@@ -63,7 +63,7 @@ namespace Reverse
         public static string[] ReverseManual(List<string> lines)
         {
             string[] reversed = new string[lines.Count];
-            for(int i=lines.Count - 1; i>=0; i--)
+            for (int i = lines.Count - 1; i >= 0; i--)
             {
                 reversed[i] = lines[lines.Count - 1 - i];
             }

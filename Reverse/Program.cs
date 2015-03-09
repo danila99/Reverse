@@ -67,6 +67,7 @@ namespace Reverse
             {
                 reversed[i] = lines[lines.Count - 1 - i];
             }
+
             return reversed;
         }
     }

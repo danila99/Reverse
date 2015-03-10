@@ -9,7 +9,7 @@ namespace Reverse
 {
     public class Program
     {
-        delegate string[] ReverseLines(List<string> lines);
+        delegate string[] ReverseLines(string[] lines);
         
         public static void Main(string[] args)
         {
@@ -26,7 +26,7 @@ namespace Reverse
                 return;
             }
 
-            var lines = new List<string>(File.ReadAllLines(filePath));
+            string[] lines = File.ReadAllLines(filePath);
             Console.WriteLine(String.Format("Total lines: {0}", lines.Count()));
             
             // magic happens here
@@ -41,7 +41,7 @@ namespace Reverse
             switch (algorithmName)
             {
                 case "-r2":
-                    return ReverseWithListMethods;
+                    return ReverseWithArrayMethods;
                 case "-r3":
                     return ReverseManual;
                 default:
@@ -49,23 +49,23 @@ namespace Reverse
             }
         }
 
-        public static string[] ReverseWithLINQ(List<string> lines)
+        public static string[] ReverseWithLINQ(string[] lines)
         {
-            return lines.Reverse<string>().ToArray();
+            return lines.Reverse().ToArray();
         }
 
-        public static string[] ReverseWithListMethods(List<string> lines)
+        public static string[] ReverseWithArrayMethods(string[] lines)
         {
-            lines.Reverse();
-            return lines.ToArray();
+            Array.Reverse(lines);
+            return lines;
         }
 
-        public static string[] ReverseManual(List<string> lines)
+        public static string[] ReverseManual(string[] lines)
         {
-            string[] reversed = new string[lines.Count];
-            for (int i = lines.Count - 1; i >= 0; i--)
+            string[] reversed = new string[lines.Length];
+            for (int i = lines.Length - 1; i >= 0; i--)
             {
-                reversed[i] = lines[lines.Count - 1 - i];
+                reversed[i] = lines[lines.Length - 1 - i];
             }
 
             return reversed;
